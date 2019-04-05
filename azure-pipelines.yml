@@ -12,18 +12,19 @@ pool:
 
 variables:
   buildConfiguration: 'Debug'
-  NAMECHEAPDOTNET_apiUser: $(namecheap.apiuser)
-  NAMECHEAPDOTNET_apiKey: $(namecheap.apikey)
-  NAMECHEAPDOTNET_clientIp: $(namecheap.clientip)
 
 steps:
-- bash: echo "clientip - $(namecheap.clientip)"
-- bash: echo $NAMECHEAPDOTNET_clientIp
-- bash: echo $NAMECHEAPDOTNET_CLIENTIP
-- bash: echo $APIKEY
+#- bash: echo "clientip - $(namecheap.clientip)"
+#- bash: echo $NAMECHEAPDOTNET_clientIp
+#- bash: echo $NAMECHEAPDOTNET_CLIENTIP
+#- bash: echo $APIKEY
+#  env:
+#    APIKEY: $(namecheap.apikey)
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
+- script: dotnet test
+  displayName: 'dotnet tests'
   env:
-    APIKEY: $(namecheap.apikey)
-#- script: dotnet build --configuration $(buildConfiguration)
-#  displayName: 'dotnet build $(buildConfiguration)'
-#- script: dotnet test
-#  displayName: 'dotnet tests'
+    NAMECHEAPDOTNET_apiUser: $(namecheap.apiuser)
+    NAMECHEAPDOTNET_apiKey: $(namecheap.apikey)
+    NAMECHEAPDOTNET_clientIp: $(namecheap.clientip)
