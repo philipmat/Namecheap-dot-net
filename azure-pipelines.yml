@@ -12,7 +12,9 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-
+  NAMECHEAPDOTNET_apiUser: $(namecheap.apiuser)
+  NAMECHEAPDOTNET_apiKey: $(namecheap.apikey)
+  NAMECHEAPDOTNET_clientIp: $(namecheap.clientip)
 
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
