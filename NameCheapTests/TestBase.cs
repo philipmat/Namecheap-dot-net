@@ -42,8 +42,8 @@ namespace NameCheapTests
             }
 
             // this is where all the very expensive code goes.
-            // EnsureTestDomain();
-            throw new Exception("staaph");
+            EnsureTestDomain();
+            // throw new Exception("staaph");
         }
 
         protected static void EnsureTestDomain()
