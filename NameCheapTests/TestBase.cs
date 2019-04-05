@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NameCheap;
@@ -33,8 +34,16 @@ namespace NameCheapTests
         [AssemblyInitialize]
         public static void BeforeAllTestsInTheAssembly(TestContext context)
         {
+            // troubleshooting
+            Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
+            foreach(System.Collections.DictionaryEntry kvp in System.Environment.GetEnvironmentVariables())
+            {
+                context.WriteLine($"env:{kvp.Key} = {kvp.Value}");
+            }
+
             // this is where all the very expensive code goes.
-            EnsureTestDomain();
+            // EnsureTestDomain();
+            throw new Exception("staaph");
         }
 
         protected static void EnsureTestDomain()
