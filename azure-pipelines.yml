@@ -17,7 +17,9 @@ variables:
   NAMECHEAPDOTNET_clientIp: $(namecheap.clientip)
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
-- script: dotnet test
-  displayName: 'dotnet tests'
+- script: echo "clientip - $(namecheap.clientip) $NAMECHEAPDOTNET_clientIp"
+  displayName: 'show vars'
+#- script: dotnet build --configuration $(buildConfiguration)
+#  displayName: 'dotnet build $(buildConfiguration)'
+#- script: dotnet test
+#  displayName: 'dotnet tests'
